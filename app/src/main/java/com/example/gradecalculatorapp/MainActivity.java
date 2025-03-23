@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        loginInButton = findViewById(R.id.LoginButton);
+        loginInButton = findViewById(R.id.LoginActivityLoginButton);
         signUpButton = findViewById(R.id.SignUpButton);
 
         loginInButton.setOnClickListener(new View.OnClickListener() {

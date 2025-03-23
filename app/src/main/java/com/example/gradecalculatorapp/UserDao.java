@@ -15,4 +15,10 @@ public interface UserDao {
 
     @Query("SELECT * FROM User")  // Fetch all users
     List<User> getAllUsers();
+
+    @Query("SELECT Password FROM User WHERE uid == :userIndex")
+    String getPassword(int userIndex);  // Return a single password
+
+    @Query("SELECT uid FROM User WHERE username = :userName LIMIT 1")
+    Integer getUserIndex(String userName);
 }
