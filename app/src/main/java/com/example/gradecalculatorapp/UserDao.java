@@ -21,4 +21,7 @@ public interface UserDao {
 
     @Query("SELECT uid FROM User WHERE username = :userName LIMIT 1")
     Integer getUserIndex(String userName);
+
+    @Query("SELECT ProfilePicLocation FROM User WHERE uid = :userID")
+    String getProfilePic(int userID);
 }

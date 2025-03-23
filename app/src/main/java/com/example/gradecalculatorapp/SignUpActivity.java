@@ -39,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(this);
         userDao = db.userDao();
 
+        userDao.getAllUsers();
+
         Email = findViewById(R.id.SignUpEmaIl);
         Username = findViewById(R.id.editTextText);
         Password = findViewById(R.id.editTextTextPassword);
@@ -46,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         SignUpButton = findViewById(R.id.button);
 
         SignUpButton.setOnClickListener(view -> handleSignUp());
+
     }
 
     private void handleSignUp() {

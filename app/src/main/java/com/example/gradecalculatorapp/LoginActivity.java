@@ -1,5 +1,6 @@
 package com.example.gradecalculatorapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (storedPassword != null && storedPassword.equals(password)) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    // Navigate to next activity or dashboard
+                    moveToDash(userIndex);
                 } else {
                     displayError("Incorrect password!");
                 }
@@ -99,6 +100,11 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, errorText, Toast.LENGTH_SHORT).show();
     }
 
+    private void moveToDash(int userIndex){
+        Intent Dashintent = new Intent(LoginActivity.this, DashBoard.class);
+        Dashintent.putExtra("userID", userIndex);
+        startActivity(Dashintent);
+    }
 
 
 
