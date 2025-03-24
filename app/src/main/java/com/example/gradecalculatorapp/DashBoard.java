@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class DashBoard extends AppCompatActivity {
     private UserDao userDao;
     private ImageView profileImageView;
     private TextView profilePicChange;
+    private Button gradeCalcButton;
     private int userID;
 
     @Override
@@ -55,6 +57,7 @@ public class DashBoard extends AppCompatActivity {
 
         profileImageView = findViewById(R.id.profileImageView);
         profilePicChange = findViewById(R.id.textView3);
+        gradeCalcButton = findViewById(R.id.gradeCalculatorButton);
 
         db = AppDatabase.getInstance(this);
         userDao = db.userDao();
@@ -73,20 +76,34 @@ public class DashBoard extends AppCompatActivity {
                 openImageChooser();
             }
         });
+
+        gradeCalcButton.setOnClickListener(view -> gotoGradeCalc(userID));
+    }
+
+    private void gotoGradeCalc(int userID){
+        Intent intent = new Intent(DashBoard.this, GradeMenuActivty.class);
+        intent.putExtra("userID", userID);
+        startActivity(intent);
     }
 
     private void displayProfilePic(int userID) {
         String profilePicUri = userDao.getProfilePic(userID);
         Log.d(TAG, "Profile picture URI retrieved: " + profilePicUri);
 
-        if (profilePicUri != null && !profilePicUri.isEmpty()) {
-            Glide.with(this)
-                    .load(Uri.parse(profilePicUri))
-                    .into(profileImageView);
-            Log.d(TAG, "Profile picture displayed successfully.");
-        } else {
-            profileImageView.setImageResource(R.mipmap.ic_default_profile_pic_round);
+        if (profilePicUri == null || profilePicUri.isEmpty()) {
             Log.w(TAG, "No profile picture found, loading default image.");
+            profileImageView.setImageResource(R.mipmap.ic_default_profile_pic_round);
+        } else {
+            File imgFile = new File(profilePicUri);
+            if (imgFile.exists()) {
+                Glide.with(this)
+                        .load(imgFile)
+                        .into(profileImageView);
+                Log.d(TAG, "Profile picture displayed successfully.");
+            } else {
+                Log.e(TAG, "Profile picture path is set but file does not exist! Using default.");
+                profileImageView.setImageResource(R.mipmap.ic_default_profile_pic_round);
+            }
         }
     }
 
@@ -180,4 +197,5 @@ public class DashBoard extends AppCompatActivity {
             }
         }
     }
+
 }
