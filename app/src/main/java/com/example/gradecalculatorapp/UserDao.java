@@ -24,4 +24,7 @@ public interface UserDao {
 
     @Query("SELECT ProfilePicLocation FROM User WHERE uid = :userID")
     String getProfilePic(int userID);
+
+    @Query("UPDATE User SET ProfilePicLocation = :profilePicPath WHERE uid = :userID")
+    void updateProfilePic(int userID, String profilePicPath);
 }
