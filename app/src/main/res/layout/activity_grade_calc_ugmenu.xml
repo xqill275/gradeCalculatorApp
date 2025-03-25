@@ -5,25 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GradeMenuActivty">
+    tools:context=".GradeCalcActivityUGMenu">
 
     <Button
-        android:id="@+id/FYButton"
+        android:id="@+id/Lv5Lv6Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="199dp"
-        android:text="Foundation Year"
+        android:layout_marginTop="208dp"
+        android:text="Lv5+Lv6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/UGButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="109dp"
-        android:text="Under Grad"
-        app:layout_constraintStart_toStartOf="@+id/FYButton"
-        app:layout_constraintTop_toBottomOf="@+id/FYButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

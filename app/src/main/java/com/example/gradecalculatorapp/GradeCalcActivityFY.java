@@ -24,7 +24,7 @@ public class GradeCalcActivityFY extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_grade_calc);
+        setContentView(R.layout.activity_fygrade_calc);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -55,15 +55,13 @@ public class GradeCalcActivityFY extends AppCompatActivity {
                 findViewById(R.id.creditInput6),
                 findViewById(R.id.creditInput7)
         };
-
         // Set button click listener
         calcButton.setOnClickListener(v -> startCalc());
     }
 
     private void startCalc() {
         ArrayList<Double> L5grades = new ArrayList<>();
-        ArrayList<Double> l6credits = new ArrayList<>();
-
+        ArrayList<Double> L6credits = new ArrayList<>();
         for (int i = 0; i < gradeInputs.length; i++) {
             String gradeText = gradeInputs[i].getText().toString();
             String creditText = creditInputs[i].getText().toString();
@@ -74,7 +72,7 @@ public class GradeCalcActivityFY extends AppCompatActivity {
                     double credit = Double.parseDouble(creditText);
 
                     L5grades.add(grade);
-                    l6credits.add(credit);
+                    L6credits.add(credit);
                 } catch (NumberFormatException e) {
                     Toast.makeText(this, "Invalid input in row " + (i + 1), Toast.LENGTH_SHORT).show();
                     return;
@@ -83,9 +81,9 @@ public class GradeCalcActivityFY extends AppCompatActivity {
         }
 
         // Debugging: Show collected values
-        Toast.makeText(this, "Grades: " + L5grades + "\nCredits: " + l6credits, Toast.LENGTH_LONG).show();
-
-        double methodC = methodCCalc(L5grades, l6credits);
+        Toast.makeText(this, "Grades: " + L5grades + "\nCredits: " + L6credits, Toast.LENGTH_LONG).show();
+        GradeCalc GradeCalc = new GradeCalc(L5grades, null, L6credits, null);
+        double methodC = GradeCalc.methodCCalc();
         if (methodC > 30.0) {
             gradeText.setText("You Passed: "+methodC);
         } else {
@@ -93,16 +91,4 @@ public class GradeCalcActivityFY extends AppCompatActivity {
         }
     }
 
-    private double methodCCalc(ArrayList<Double> grades, ArrayList<Double> credits){
-        double weightedSum = 0;
-        double totalCredits = 0;
-
-        for (int i = 0; i < grades.size(); i++) {
-            weightedSum += grades.get(i) * credits.get(i);
-            totalCredits += credits.get(i);
-        }
-
-        if (totalCredits == 0) return 0; // Prevent division by zero
-        return weightedSum / totalCredits; // Weighted average formula
-    }
 }
