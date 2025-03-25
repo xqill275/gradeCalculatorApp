@@ -14,7 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class GradeCalcActivityFY extends AppCompatActivity {
+public class LV6UGActivity extends AppCompatActivity {
+
     Button calcButton;
     EditText[] gradeInputs;
     EditText[] creditInputs;

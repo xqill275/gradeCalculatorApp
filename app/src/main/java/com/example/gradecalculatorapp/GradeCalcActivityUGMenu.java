@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class GradeCalcActivityUGMenu extends AppCompatActivity {
     Button Lv5Lv6Button;
+    Button LV6Button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class GradeCalcActivityUGMenu extends AppCompatActivity {
         });
         int userID = getIntent().getIntExtra("UserID", -1);
         Lv5Lv6Button = findViewById(R.id.Lv5Lv6Button);
+        LV6Button = findViewById(R.id.Lv6Button);
 
         Lv5Lv6Button.setOnClickListener(view -> goto5and6(userID));
 
@@ -32,6 +34,12 @@ public class GradeCalcActivityUGMenu extends AppCompatActivity {
     private void goto5and6(int userId){
         Intent intent = new Intent(GradeCalcActivityUGMenu.this, LV5ANDLV6UGActivity.class);
         intent.putExtra("userID", userId);
+        startActivity(intent);
+    }
+
+    private void goto6(int userID){
+        Intent intent = new Intent(GradeCalcActivityUGMenu.this, LV6UGActivity.class);
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 }

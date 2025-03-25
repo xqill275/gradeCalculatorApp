@@ -17,6 +17,9 @@
         android:theme="@style/Theme.GradeCalculatorApp"
         tools:targetApi="31">
         <activity
+            android:name=".LV6UGActivity"
+            android:exported="false" />
+        <activity
             android:name=".LV5ANDLV6UGActivity"
             android:exported="false" />
         <activity

@@ -82,11 +82,15 @@ public class LV5ANDLV6UGActivity extends AppCompatActivity {
     }
 
     private void startCalc(){
-        ArrayList<Double> L5Grades = getArray(LV5gradeInputs);
-        ArrayList<Double> L5Credits = getArray(LV5creditInputs);
-        ArrayList<Double> L6Grades = getArray(LV6gradeInputs);
-        ArrayList<Double> L6Credits = getArray(LV6gradeInputs);
-        GradeCalc gradeCalc = new GradeCalc(L5Grades, L5Credits, L6Grades, L6Credits);
+        GradeCalc gradeCalc = new GradeCalc();
+        ArrayList<Double> L5Grades = gradeCalc.getArray(LV5gradeInputs);
+        ArrayList<Double> L5Credits = gradeCalc.getArray(LV5creditInputs);
+        ArrayList<Double> L6Grades = gradeCalc.getArray(LV6gradeInputs);
+        ArrayList<Double> L6Credits = gradeCalc.getArray(LV6creditInputs);
+        gradeCalc.setLV5Grades(L5Grades);
+        gradeCalc.setLV6Grades(L6Grades);
+        gradeCalc.setLV5Credits(L5Credits);
+        gradeCalc.setLV6Credits(L6Credits);
         double methodA = gradeCalc.methodACalc();
         double methodB = gradeCalc.methodCCalc();
 
@@ -95,22 +99,4 @@ public class LV5ANDLV6UGActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Double> getArray(EditText[] array) {
-        ArrayList<Double> newArray = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            String arrayText = array[i].getText().toString();
-            if (!arrayText.isEmpty()) {
-                try {
-                    double doubleText = Double.parseDouble(arrayText);
-
-                    newArray.add(doubleText);
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "Invalid input in row " + (i + 1), Toast.LENGTH_SHORT).show();
-                    return null;
-                }
-
-            }
-        }
-        return newArray;
-    }
 }
