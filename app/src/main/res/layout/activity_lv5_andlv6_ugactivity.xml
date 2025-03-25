@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".LV5ANDLV6UGActivity">
+
+        <TextView
+            android:id="@+id/LV5gradeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LV5 Grade"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/LV5creditLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LV5 Credit"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/LV5gradeLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/LV5gradeCreditContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/LV5creditLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Example Row with Constraints -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/gradeInput7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/creditInput7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/LV6Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 6 Grades"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/LV5gradeCreditContainer"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/LV6gradeCreditContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/LV6Header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Example Row with Constraints -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/LV6gradeInput7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/LV6creditInput7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Credit"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/CalcGradeID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate Grade"
+            app:layout_constraintTop_toBottomOf="@+id/LV6gradeCreditContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/MethodATextId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MethodA grade"
+            app:layout_constraintTop_toBottomOf="@id/CalcGradeID"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/MethodBTextId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MethodB grade"
+            app:layout_constraintTop_toBottomOf="@id/MethodATextId"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
