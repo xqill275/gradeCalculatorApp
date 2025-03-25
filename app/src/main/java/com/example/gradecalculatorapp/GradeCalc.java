@@ -1,5 +1,6 @@
 package com.example.gradecalculatorapp;
 
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,12 +32,13 @@ public class GradeCalc {
     }
 
     public void setLV6Credits(ArrayList<Double> newLV6Credits) {
-        this.LV5Credits = newLV6Credits;
+        this.LV6Credits = newLV6Credits;
     }
 
 
     public double methodCCalc(){
-        return getWeightedAverage(LV5Grades, LV5Credits);
+        Log.d("GradeCalc", "GradeCalc: lv6 grades: " + LV6Grades + " lv6 credits: "+ LV6Credits);
+        return getWeightedAverage(LV6Grades, LV6Credits);
     }
 
     public double methodACalc(){
