@@ -28,6 +28,7 @@ public class GradeCalcActivityUGMenu extends AppCompatActivity {
         LV6Button = findViewById(R.id.Lv6Button);
 
         Lv5Lv6Button.setOnClickListener(view -> goto5and6(userID));
+        LV6Button.setOnClickListener(view -> goto6(userID));
 
     }
 
