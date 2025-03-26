@@ -40,7 +40,7 @@ public class DashBoard extends AppCompatActivity {
     private UserDao userDao;
     private ImageView profileImageView;
     private TextView profilePicChange;
-    private Button gradeCalcButton;
+    private Button gradeCalcButton, modualTrackerButton;
     private int userID;
 
     @Override
@@ -58,6 +58,7 @@ public class DashBoard extends AppCompatActivity {
         profileImageView = findViewById(R.id.profileImageView);
         profilePicChange = findViewById(R.id.textView3);
         gradeCalcButton = findViewById(R.id.gradeCalculatorButton);
+        modualTrackerButton = findViewById(R.id.ModualTrackerButton);
 
         db = AppDatabase.getInstance(this);
         userDao = db.userDao();
@@ -78,10 +79,17 @@ public class DashBoard extends AppCompatActivity {
         });
 
         gradeCalcButton.setOnClickListener(view -> gotoGradeCalc(userID));
+        modualTrackerButton.setOnClickListener(view -> gotoModualTracker(userID));
     }
 
     private void gotoGradeCalc(int userID){
         Intent intent = new Intent(DashBoard.this, GradeMenuActivty.class);
+        intent.putExtra("userID", userID);
+        startActivity(intent);
+    }
+
+    public void gotoModualTracker(int userID) {
+        Intent intent = new Intent(DashBoard.this, ModualTrackerActivity.class);
         intent.putExtra("userID", userID);
         startActivity(intent);
     }
