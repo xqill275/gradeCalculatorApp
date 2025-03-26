@@ -7,21 +7,21 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class}, version = 2)  // ⬆️ Updated version from 1 to 2
+@Database(entities = {User.class, Modules.class}, version = 3)  // ✅ Add Modules.class, Update version
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
+    public abstract ModulesDao modulesDao();  // ✅ Add Modules DAO
 
     private static volatile AppDatabase INSTANCE;
 
-    // Singleton to prevent multiple instances
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "user-database")
-                            .addMigrations(MIGRATION_1_2) // Handle schema change
-                            .allowMainThreadQueries() // Not recommended for large apps
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3) // ✅ Added MIGRATION_2_3
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
@@ -29,11 +29,28 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    // Migration from version 1 to 2 (Adding ProfilePic column)
+    // ✅ Migration from v1 → v2 (User table update)
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE User ADD COLUMN ProfilePic TEXT DEFAULT ''");
         }
     };
+
+    // ✅ Migration from v2 → v3 (Adding Modules table)
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS Modules (" +
+                    "moduleID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "CreatedUserID INTEGER, " +
+                    "Title TEXT, " +
+                    "Description TEXT, " +
+                    "TargetGrade TEXT, " +
+                    "CurrentGrade TEXT, " +
+                    "FOREIGN KEY (CreatedUserID) REFERENCES User(uid) ON DELETE CASCADE)");
+        }
+    };
 }
+
+
