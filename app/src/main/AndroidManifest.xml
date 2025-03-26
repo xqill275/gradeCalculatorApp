@@ -17,6 +17,18 @@
         android:theme="@style/Theme.GradeCalculatorApp"
         tools:targetApi="31">
         <activity
+            android:name=".GradeCalcActivityPGCertificate"
+            android:exported="false" />
+        <activity
+            android:name=".GradeCalcActivityPGDegree"
+            android:exported="false" />
+        <activity
+            android:name=".GradeCalcActivityPGAward"
+            android:exported="false" />
+        <activity
+            android:name=".GradeCalcActivityPGMenu"
+            android:exported="false" />
+        <activity
             android:name=".LV6UGActivity"
             android:exported="false" />
         <activity

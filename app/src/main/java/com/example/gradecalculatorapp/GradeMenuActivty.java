@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class GradeMenuActivty extends AppCompatActivity {
     Button FYButton;
     Button UGButton;
+    Button PGButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +28,13 @@ public class GradeMenuActivty extends AppCompatActivity {
 
         FYButton = findViewById(R.id.FYButton);
         UGButton = findViewById(R.id.UGButton);
+        PGButton = findViewById(R.id.PostGradButton);
 
         int userID = getIntent().getIntExtra("userID", -1);
 
         FYButton.setOnClickListener(view -> gotoFY(userID));
         UGButton.setOnClickListener(view -> gotoUG(userID));
+        PGButton.setOnClickListener(view -> gotoPG(userID));
     }
 
     private void gotoFY(int userID){
@@ -42,6 +45,12 @@ public class GradeMenuActivty extends AppCompatActivity {
 
     private void gotoUG(int userID){
         Intent intent = new Intent(GradeMenuActivty.this, GradeCalcActivityUGMenu.class);
+        intent.putExtra("userID", userID);
+        startActivity(intent);
+    }
+
+    private void gotoPG(int userID) {
+        Intent intent = new Intent(GradeMenuActivty.this, GradeCalcActivityPGMenu.class);
         intent.putExtra("userID", userID);
         startActivity(intent);
     }
