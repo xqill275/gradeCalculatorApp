@@ -30,6 +30,9 @@ public class GradeCalcActivityUGMenu extends AppCompatActivity {
         Lv5Lv6Button.setOnClickListener(view -> goto5and6(userID));
         LV6Button.setOnClickListener(view -> goto6(userID));
 
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
+
     }
 
     private void goto5and6(int userId){

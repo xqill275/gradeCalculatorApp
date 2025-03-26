@@ -274,4 +274,17 @@
         android:text="Final Grade"
         app:layout_constraintBottom_toTopOf="@+id/CalcGradeID"
         app:layout_constraintEnd_toEndOf="@+id/CalcGradeID" />
+
+    <Button
+        android:id="@+id/GoBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="go back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CalcGradeID"
+        app:layout_constraintTop_toBottomOf="@+id/LV5gradeCreditContainer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,6 +79,9 @@ public class LV5ANDLV6UGActivity extends AppCompatActivity {
         };
 
         calcButton.setOnClickListener(v -> startCalc());
+
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
     }
 
     private void startCalc(){

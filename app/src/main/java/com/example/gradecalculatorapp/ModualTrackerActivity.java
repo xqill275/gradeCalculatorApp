@@ -66,6 +66,8 @@ public class ModualTrackerActivity extends AppCompatActivity {
         addModualButton = findViewById(R.id.addModualButton);
         addModualButton.setOnClickListener(view -> gotoModualForm(userID));
 
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
         // Start auto-refreshing
         startAutoRefresh();
     }

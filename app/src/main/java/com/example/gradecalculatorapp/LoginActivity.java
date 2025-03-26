@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppDatabase db;
     private UserDao userDao;
     private static final String TAG = "LoginActivity";
-    Button LoginButton;
+    Button LoginButton, goBack;
     EditText PasswordEdit, UsernameEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         userDao = db.userDao();
 
         LoginButton = findViewById(R.id.LoginActivityLoginButton);
+        goBack = findViewById(R.id.GoBackButton);
         PasswordEdit = findViewById(R.id.editTextTextPassword3);
         UsernameEdit = findViewById(R.id.editTextText2);
 
         LoginButton.setOnClickListener(view -> handleLogin());
+        goBack.setOnClickListener(view -> finish());
     }
 
     private void handleLogin(){
