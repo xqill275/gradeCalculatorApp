@@ -18,5 +18,17 @@ public interface ModulesDao {
     void deleteModule(int moduleID);  // ✅ Delete a module by ID
 
     @Query("UPDATE Modules SET TargetGrade = :targetGrade WHERE moduleID = :moduleID")
-    void updateTargetGrade(int moduleID, String targetGrade);  // ✅ Update module target grade
+    void updateTargetGrade(int moduleID, String targetGrade); // ✅ Update module target grade
+
+    @Query("UPDATE Modules SET Title = :newTitle WHERE moduleID = :moduleID")
+    void updateTitle(int moduleID, String newTitle); // ✅ Update module title
+
+    @Query("UPDATE Modules SET Description = :newDescription WHERE moduleID = :moduleID")
+    void updateDescription(int moduleID, String newDescription); // ✅ Update module description
+
+    @Query("UPDATE Modules SET CurrentGrade = :newCurrentGrade WHERE moduleID = :moduleID")
+    void updateCurrentGrade(int moduleID, String newCurrentGrade); // ✅ Update module current grade
+
+
+    // Add more update methods if your Modules class has more fields
 }

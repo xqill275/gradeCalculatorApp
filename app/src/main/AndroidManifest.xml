@@ -17,6 +17,9 @@
         android:theme="@style/Theme.GradeCalculatorApp"
         tools:targetApi="31">
         <activity
+            android:name=".EditModulesActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddModualForm"
             android:exported="false" />
         <activity
