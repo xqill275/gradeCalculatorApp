@@ -57,6 +57,9 @@ public class GradeCalcActivityPGDegree extends AppCompatActivity {
         };
         // Set button click listener
         calcButton.setOnClickListener(v -> startCalc());
+
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
     }
 
     public void startCalc() {

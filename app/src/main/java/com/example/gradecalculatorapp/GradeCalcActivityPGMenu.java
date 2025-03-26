@@ -30,6 +30,9 @@ public class GradeCalcActivityPGMenu extends AppCompatActivity {
         MasterAwardButton.setOnClickListener(view -> gotoPGAward(userID));
         PostGradeDegreeButton.setOnClickListener(view -> gotoPGDegree(userID));
         PostGradeCertificate.setOnClickListener(view -> gotoPGCertificate(userID));
+
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
     }
 
     public void gotoPGAward(int userID){

@@ -80,6 +80,9 @@ public class DashBoard extends AppCompatActivity {
 
         gradeCalcButton.setOnClickListener(view -> gotoGradeCalc(userID));
         modualTrackerButton.setOnClickListener(view -> gotoModualTracker(userID));
+
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
     }
 
     private void gotoGradeCalc(int userID){

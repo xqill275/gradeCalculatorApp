@@ -46,8 +46,11 @@ public class SignUpActivity extends AppCompatActivity {
         Password = findViewById(R.id.editTextTextPassword);
         ConfirmPassword = findViewById(R.id.editTextTextPassword2);
         SignUpButton = findViewById(R.id.button);
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
 
         SignUpButton.setOnClickListener(view -> handleSignUp());
+
 
     }
 

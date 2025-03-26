@@ -11,17 +11,17 @@
         android:id="@+id/PostGradButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="72dp"
         android:text="Post Grad"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/GoBackButton"
+        app:layout_constraintEnd_toEndOf="@+id/UGButton" />
 
     <Button
         android:id="@+id/FYButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="199dp"
+        android:layout_marginTop="228dp"
         android:text="Foundation Year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,9 +31,20 @@
         android:id="@+id/UGButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="72dp"
         android:text="Under Grad"
         app:layout_constraintBottom_toTopOf="@+id/PostGradButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/GoBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="84dp"
+        android:text="go back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/PostGradButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

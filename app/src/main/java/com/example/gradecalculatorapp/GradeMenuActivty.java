@@ -35,6 +35,9 @@ public class GradeMenuActivty extends AppCompatActivity {
         FYButton.setOnClickListener(view -> gotoFY(userID));
         UGButton.setOnClickListener(view -> gotoUG(userID));
         PGButton.setOnClickListener(view -> gotoPG(userID));
+
+        Button goBack = findViewById(R.id.GoBackButton);
+        goBack.setOnClickListener(view -> finish());
     }
 
     private void gotoFY(int userID){
