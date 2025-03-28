@@ -31,7 +31,7 @@ Cons:
 - No Data Sync – Sharing or syncing the database between devices is impossible with my current implementation.
 
 #### Database Implementation
-The database is created using Android Room, which provides an abstraction layer over SQLite. Below is the main AppDatabase class that sets up the database:
+The database is created using Android Room, which provides an SQLite Database. Below is the main AppDatabase class that sets up the database:
 ```java
 package com.example.gradecalculatorapp;
 
@@ -90,7 +90,7 @@ public abstract class AppDatabase extends RoomDatabase {
 ```
 #### key features of this implentation
 
-- Singleton Pattern – This Ensures only one copy of the database exists throughout the app’s lifecycle, this is so that when the app is relaunched it dosen't recreate a new database for no real reason 
+- Singleton Pattern – This Ensures only one copy of the database exists throughout the app, this is so that when the app is relaunched it dosen't recreate a new database if it dosen't need to
 - Thread Safety – Uses synchronised locking in getInstance() to ensure only one thread accesses the database at a time.
 - Migrations – Preserves user data when upgrading the database by adding new columns and tables rather than replacing the entire database.
 
@@ -99,7 +99,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
 #### Why I Use allowMainThreadQueries()
 
-In my app, I use allowMainThreadQueries() to allow me to accsess and edit the database on the main thread. While this is generally not recommended as it can cause potential performance issues due to it causing the ui thread to freeze while it completes the sql command completes, I chose this approach for the following reasons:
+In my app, I use allowMainThreadQueries() to allow me to accsess and edit the database on the main thread. While this is generally not recommended as it can cause potential performance issues as it may cause the ui thread to freeze while it completes the sql command, I chose this approach for the following reasons:
 
 - Simplicity: My app is small, and database queries are lightweight, so the risk of UI freezing is minimal.
 - Faster Development: Using this method allowed me to quickly implement and test database features without dealing with background threading.
@@ -355,7 +355,7 @@ If the login is successful, the app navigates to the dashboard, passing the user
 
 ### Dashboard Screen
 
-The dashboard serves as the main hub of my app, it provides providing access to all the features of the app such as profile management, grade calculation, and module tracking.
+The dashboard serves as the main hub of my app, it provides access to all the features of the app such as profile management, grade calculation, and module tracking.
 Features & Functionality
 
 - Profile Picture Management
@@ -472,7 +472,7 @@ private String saveImageLocally(Uri uri) {
 }
 ```
 
-    Copies the selected image from external storage to a local file for persistent access.
+Copies the selected image from external storage to a local file for persistent access.
 
 6. Navigation to Other Features
 ``` java
@@ -502,6 +502,264 @@ private boolean checkStoragePermissions() {
 
 Requests storage permission if required, depending on the Android version.
 
+### Module Tracker Screen
+
+The ModualTrackerActivity is responsible for displaying and managing a list of modules associated with a specific user. It retrieves the user's modules from the database and displays them in a RecyclerView, allowing users to track their progress. The activity also supports refreshing the module list automatically every 5 seconds.
+
+###### Features & Functionality
+
+Key Features
+
+- Retrieves User's Modules from the database using Room.
+
+- Displays Modules in a RecyclerView with an Adapter for easy UI updates.
+
+- Auto-Refresh Mechanism that updates the list every 5 seconds.
+
+- Navigation to Add Module Form for adding new modules.
+
+- andles Null Cases Gracefully by initializing an empty list when necessary.
+
+###### Code Overview
+
+1. Retrieving Modules from the Database
+
+``` java
+    // Initialize database & DAO
+    db = AppDatabase.getInstance(this);
+    ModulesDao = db.modulesDao();
+
+    // Fetch modules for this user
+    usersModules = ModulesDao.getModulesByUser(userID);
+
+    // Check if usersModules is null and initialize it if necessary
+    if (usersModules == null) {
+        usersModules = new ArrayList<>(); // Prevent NullPointerException
+    }
+```
+
+The database instance is retrieved using AppDatabase.getInstance(this).
+
+The ModulesDao is used to fetch all modules associated with the given userID.
+
+A null check is performed to ensure usersModules is always initialized, avoiding NullPointerException.
+
+2. Setting Up RecyclerView
+``` java
+    // Set up RecyclerView
+    recyclerView = findViewById(R.id.modulesRecyclerView);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    // Pass the data to the adapter
+    adapter = new ModulesAdapter(this, usersModules, ModulesDao);
+    recyclerView.setAdapter(adapter);
+```
+
+A RecyclerView is used to display the list of modules.
+
+LinearLayoutManager arranges the items in a vertical list.
+
+ModulesAdapter handles displaying individual module items.
+
+3. Implementing Auto-Refresh
+``` java
+    private void startAutoRefresh() {
+        refreshRunnable = new Runnable() {
+            @Override
+            public void run() {
+                refreshModules(); // Fetch new data and update UI
+                handler.postDelayed(this, REFRESH_INTERVAL); // Schedule next refresh
+            }
+        };
+        handler.post(refreshRunnable);
+    }
+```
+
+A Handler is used to periodically update the module list every 5 seconds (REFRESH_INTERVAL = 5000).
+
+This ensures that if new modules are added, the UI is updated automatically.
+
+Refreshing the Module List
+``` java
+private void refreshModules() {
+    usersModules = ModulesDao.getModulesByUser(userID);
+    Log.d("Modual Tracker", "Updated Modules: " + usersModules.toString());
+
+    runOnUiThread(() -> {
+        adapter.updateModules(usersModules); // Ensure adapter has an update method
+    });
+}
+```
+
+Fetches the latest modules from the database.
+
+Logs the updated module list for debugging.
+
+Calls adapter.updateModules(usersModules) to update the UI on the main thread.
+
+4. Navigation to Add Module Form
+
+``` java
+addModualButton = findViewById(R.id.addModualButton);
+addModualButton.setOnClickListener(view -> gotoModualForm(userID));
+
+public void gotoModualForm(int userID) {
+    Intent intent = new Intent(ModualTrackerActivity.this, AddModualForm.class);
+    intent.putExtra("userID", userID);
+    startActivity(intent);
+}
+```
+
+The "Add Module" button opens AddModualForm and passes the userID via an intent.
+
+### Grade Calculation Logic
+
+The GradeCalc class handles the calculation of weighted grade averages based on Level 5 and Level 6 grades and credits. It provides different calculation methods based on various weighting strategies.
+
+Features & Functionality
+Key Features
+- Stores Level 5 and Level 6 grades and credits separately.
+
+- Calculates weighted averages using different methods.
+
+- Handles invalid input cases gracefully.
+
+- Provides utility to convert EditText input into a numerical list.
+
+#### Class Overview
+1. Data Storage & Initialization
+
+The class uses ArrayList<Double> to store grades and credits for both Level 5 and Level 6 modules.
+``` java
+private ArrayList<Double> LV5Grades;
+private ArrayList<Double> LV6Grades;
+private ArrayList<Double> LV5Credits;
+private ArrayList<Double> LV6Credits;
+```
+
+These lists are initialized in the constructor:
+
+``` java
+public GradeCalc() {
+    this.LV5Grades = new ArrayList<>();
+    this.LV6Grades = new ArrayList<>();
+    this.LV5Credits = new ArrayList<>();
+    this.LV6Credits = new ArrayList<>();
+}
+```
+
+2. Setting Grades & Credits
+
+The class provides setter methods to update the stored values.
+
+``` java
+
+public void setLV5Grades(ArrayList<Double> newLV5Grades) {
+    this.LV5Grades = newLV5Grades;
+}
+
+public void setLV6Grades(ArrayList<Double> newLV6Grades) {
+    this.LV6Grades = newLV6Grades;
+}
+
+public void setLV5Credits(ArrayList<Double> newLV5Credits) {
+    this.LV5Credits = newLV5Credits;
+}
+
+public void setLV6Credits(ArrayList<Double> newLV6Credits) {
+    this.LV6Credits = newLV6Credits;
+}
+
+```
+3. Grade Calculation Methods
+
+The class includes three methods for calculating weighted grade averages.
+Method C (Level 6 Weighted Average)
+
+``` java
+public double methodCCalc() {
+    Log.d("GradeCalc", "GradeCalc: lv6 grades: " + LV6Grades + " lv6 credits: " + LV6Credits);
+    return getWeightedAverage(LV6Grades, LV6Credits);
+}
+```
+
+Computes the weighted average using only Level 6 grades and credits.
+
+Logs the grades and credits for debugging.
+
+Method A (Equal Contribution from Level 5 & Level 6)
+``` java
+public double methodACalc() {
+    double LV5average = getWeightedAverage(LV5Grades, LV5Credits);
+    double LV6average = getWeightedAverage(LV6Grades, LV6Credits);
+    return (LV5average + LV6average) / 2;
+}
+```
+
+Takes the average of Level 5 and Level 6 weighted grades.
+
+Assumes equal contribution from both levels.
+
+Method B (Higher Weight for Level 6)
+
+``` java
+public double methodBCalc() {
+    double LV5average = getWeightedAverage(LV5Grades, LV5Credits);
+    double LV6average = getWeightedAverage(LV6Grades, LV6Credits);
+    return (LV5average + LV6average + LV6average) / 3;
+}
+```
+
+Similar to Method A but gives Level 6 a higher weight.
+
+Uses (LV5average + 2 * LV6average) / 3 to emphasize Level 6 performance.
+``` java
+private double getWeightedAverage(ArrayList<Double> inputGrades, ArrayList<Double> inputCredits) {
+    double weightedSum = 0;
+    double totalCredits = 0;
+
+    for (int i = 0; i < inputGrades.size(); i++) {
+        weightedSum += inputGrades.get(i) * inputCredits.get(i);
+        totalCredits += inputCredits.get(i);
+    }
+
+    if (totalCredits == 0) return 0; // Prevent division by zero
+    return weightedSum / totalCredits; // Weighted average formula
+}
+```
+
+Multiplies each grade by its corresponding credit.
+
+Sums up the weighted values and divides by total credits.
+
+Prevents division by zero.
+
+5. Extracting Numerical Data from UI Inputs
+
+The getArray method converts an array of EditText fields into a list of Double values.
+``` java
+public ArrayList<Double> getArray(EditText[] array) {
+    ArrayList<Double> newArray = new ArrayList<>();
+    for (int i = 0; i < array.length; i++) {
+        String arrayText = array[i].getText().toString();
+        if (!arrayText.isEmpty()) {
+            try {
+                double doubleText = Double.parseDouble(arrayText);
+                newArray.add(doubleText);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+    }
+    return newArray;
+}
+```
+
+Iterates through an array of EditText fields.
+
+Converts non-empty values to Double and adds them to the list.
+
+Returns null if an invalid number is encountered.
 
 
 

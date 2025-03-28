@@ -154,7 +154,7 @@ public class DashBoard extends AppCompatActivity {
     }
 
     /**
-     * ✅ Saves the image locally if it's from Google Photos or other content URIs.
+     * Saves the image locally .
      */
     private String saveImageLocally(Uri uri) {
         File file = new File(getExternalFilesDir(null), "profile_pic.jpg");
@@ -175,7 +175,7 @@ public class DashBoard extends AppCompatActivity {
     }
 
     /**
-     * ✅ Checks and Requests Storage Permissions for different Android versions.
+     * Checks and Requests Storage Permissions for different Android versions.
      */
     private boolean checkStoragePermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13+
@@ -193,7 +193,7 @@ public class DashBoard extends AppCompatActivity {
     }
 
     /**
-     * ✅ Handles Permission Request Results.
+     * Handles Permission Request Results.
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -4,27 +4,27 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity  // ✅ Mark it as an entity so Room recognizes it as a table
-public class Modules {   // Or name it "Module" for better naming
+@Entity
+public class Modules {
     @PrimaryKey(autoGenerate = true)
-    public int moduleID;  // ✅ Fixed capitalization
+    public int moduleID;  // Fixed capitalization
 
     @ColumnInfo(name = "CreatedUserID")
-    public int createdUserID;  // ✅ Changed to int to match User ID type
+    public int createdUserID;
 
     @ColumnInfo(name = "Title")
-    public String title;  // ✅ Fixed capitalization
+    public String title;
 
     @ColumnInfo(name = "Description")
     public String description;
 
     @ColumnInfo(name = "TargetGrade")
-    public String targetGrade;  // ✅ Fixed capitalization
+    public String targetGrade;
 
     @ColumnInfo(name = "CurrentGrade")
     public String currentGrade;
 
-    // ✅ Constructor for easy object creation
+
     public Modules(int createdUserID, String title, String description, String targetGrade, String currentGrade) {
         this.createdUserID = createdUserID;
         this.title = title;

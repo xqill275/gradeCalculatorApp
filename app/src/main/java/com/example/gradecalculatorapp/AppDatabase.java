@@ -7,10 +7,10 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class, Modules.class}, version = 3)  // ✅ Add Modules.class, Update version
+@Database(entities = {User.class, Modules.class}, version = 3)  // Add Modules.class, Update version
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
-    public abstract ModulesDao modulesDao();  // ✅ Add Modules DAO
+    public abstract ModulesDao modulesDao();  // Add Modules DAO
 
     private static volatile AppDatabase INSTANCE;
 
@@ -20,7 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "user-database")
-                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3) // ✅ Added MIGRATION_2_3
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3) // Added MIGRATION_2_3
                             .allowMainThreadQueries()
                             .build();
                 }
